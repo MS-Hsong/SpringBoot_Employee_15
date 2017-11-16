@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+ <div th:each="employee: ${employees}">
+     <h3 th:text="${employee.name}"></h3>
+     <h4 th:inline="text"> The address is [[${employee.address}]].</h4>
+     <h4 th:inline="text"> This employee has laptop: model [[${employee.laptop.model}]], brand [[${employee.laptop.brand}]] </h4>
+     <ul>
+         <th:block th:object="${employee.laptop}">
+             <li th:inline="text">Has been assigned a <b>[[*{brand}]]</b> [[*{model}]]</li>
+         </th:block>
+
+     </ul>
+
+ </div>
+
+<h3> =========================== </h3>
+
+ <div th:each="laptop: ${laptops}">
+     <h3 th:text="${laptop.model}"></h3>
+     <h4 th:inline="text"> The brand is [[${laptop.brand}]].</h4>
+     <h4 th:inline="text"> This laptop belongs to [[${laptop.employee.name}]].</h4>
+ </div>
+
+</body>
+</html>
